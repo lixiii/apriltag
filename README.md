@@ -35,7 +35,15 @@ If you have CMake installed or it is not difficult to install, then do:
 
     $ cmake .
     $ sudo make install
-    
+
+If you are using Anaconda and you want to install the python wrapper to the current environment (which we specified), modify the first few commands to suit your environment and do
+
+    $ export CONDA_HOME=/opt/conda
+    $ export CONDA_ENV=opencv
+    $ cmake  -D PYTHON_LIBRARY=$CONDA_HOME/envs/$CONDA_ENV/lib/libpython3.6m.so -D PYTHON_INCLUDE_DIR=$CONDA_HOME/envs/$CONDA_ENV/include/python3.6m .
+    $ mkdir -p ~/.local/lib/python3.6/site-packages # the Makefile installs the wrapper to the user-site so make this directory if not exists
+    $ sudo make install
+
 Otherwise, we have a handwritten makefile you can use (be warned it will do slightly different things):
 
     $ make
